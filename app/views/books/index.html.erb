@@ -1,3 +1,4 @@
+<p id="notice">Book was successfully created.</p>
 <h1>Bookers</h1>
   <table>
     <thead>
@@ -20,12 +21,12 @@
         </td>
         <td>
           <span>
-            <%= link_to "Edit", "/books/#{book.id}" %>
+            <%= link_to "Edit", "/books/#{book.id}/edit" %>
           </span>
         </td>
         <td>
           <span>
-            <%= link_to "Destroy", "/books/#{book.id}" %>
+            <%= link_to "Destroy", "books/#{book.id}", method: :delete, "data-confirm" => "Are you sure?？" %>
           </span>
         </td>
       </tr>
@@ -33,38 +34,40 @@
     <% end %>
   </table>
   
-  
   <h2>New book</h2>
-  <form class="new_book" id="new_book" action="/books" accept-charset="UTF-8" method="post">
-   <input name="utf8" type="hidden" value="✓">
-   <input type="hidden" name="authenticity_token" value="KNlXUR8oUXJT+upJtg4FT7eeRmY4MiMk5jtz9ljx8zxBbbGvUTVkK/9A8HQ++MERxc3lLVVrblOkQHzk9NkYlQ==">
+  <form class="new_book" id="new_book" action="/books" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="FKHIa6cS+Iq5lSXUdI5+0UW4VS/zLSxs0qC4MSEFfUl9FS6V6Q/N0xUvP+n8eLqPN+v2ZJ50YRuQ27cjjS2W4A==">
 
-    <div class="field">
-      <label for="book_title">Title</label>
-      <input class="book_title" type="text" name="book[title]" id="book_title">
-    </div>
+  <div class="field">
+    <label for="book_title">Title</label>
+    <input class="book_title" type="text" name="book[title]" id="book_title">
+  </div>
 
-    <div class="field">
-      <label for="book_body">Body</label>
-      <textarea class="book_body" name="book[body]" id="book_body"></textarea>
-    </div>
+  <div class="field">
+    <label for="book_body">Body</label>
+    <textarea class="book_body" name="book[body]" id="book_body"></textarea>
+  </div>
 
-    <div class="actions">
-      <input type="submit" name="commit" value="Create Book" data-disable-with="Create Book">
-    </div>
-　</form>
+  <div class="actions">
+    <input type="submit" name="commit" value="Create Book" data-disable-with="Create Book">
+  </div>
+</form>
+  
+  
+  
   
   <h2>New book</h2>
   <%= form_with model: @book, url: '/books', methot: :post do |f| %>
-
-    <p>Title</p>
-    <%= f.text_area :title %>
-
-    <p>Body</p>
-    <%= f.text_area :body %>
+    <div class="field">
+      <p>Title</p>
+      <%= f.text_area :title %>
+    </div>
+    <div class="field">
+      <p>Body</p>
+      <%= f.text_area :body %>
+    </div>
     
-    <p>
+    <div class="actions">
       <%= f.submit 'Create Book' %>
-    </p>
+    </div>
     
   <% end %>
